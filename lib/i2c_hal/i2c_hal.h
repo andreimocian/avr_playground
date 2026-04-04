@@ -5,6 +5,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+#define STATUS_MASK 0xF8
+
 //1ms timeout
 #define TWI_TIMEOUT 1600
 
@@ -34,7 +36,13 @@ enum {
 };
 
 void i2c_init(uint32_t speed);
+
 uint8_t i2c_read(uint8_t addr, uint8_t *data, uint16_t len);
 uint8_t i2c_write(uint8_t addr, uint8_t *data, uint16_t len);
+
+uint8_t i2c_random_read(uint8_t addr, uint8_t addr_byte, uint8_t *data);
+uint8_t i2c_sequential_read(uint8_t addr, uint8_t byte_addr, uint8_t *data, uint16_t len);
+uint8_t i2c_byte_write(uint8_t addr, uint8_t byte_addr, uint8_t byte);
+uint8_t i2c_sequential_write(uint8_t addr, uint8_t byte_addr, uint8_t *data, uint16_t len);
 
 #endif
