@@ -10,6 +10,7 @@
 void uart_init(uint32_t baud, uint8_t high_speed);
 void uart_send_byte(uint8_t data);
 void uart_send_stringln(uint8_t *str);
+void uart_send_number(uint16_t num);
 uint16_t uart_read_count();
 uint8_t uart_read();
 

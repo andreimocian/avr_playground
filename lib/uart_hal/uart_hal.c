@@ -58,6 +58,32 @@ void uart_send_stringln(uint8_t *str)
     uart_send_byte('\n');
 }
 
+void uart_send_number(uint16_t num)
+{
+    uint16_t i = 0;
+    uint8_t buffer[10] = {0};
+    uint8_t digit = 0;
+
+    if(0 == num)
+    {
+        uart_send_byte('0');
+        return;
+    }
+
+    while(num > 0)
+    {
+        digit = '0' + (num % 10);
+        buffer[i++] = digit;
+        num = num / 10;
+    }
+
+    i--;
+    for(int16_t j = i; j >= 0; j--)
+    {
+        uart_send_byte(buffer[j]);
+    }
+}
+
 uint16_t uart_read_count()
 {
     return count;
